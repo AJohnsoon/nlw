@@ -2,13 +2,12 @@ import express from 'express';
 
 const app = express();
 
-
 /**
- * Methodos HTTP
- * GET => Buscar
- * POST => Salvar
- * PUT => Alterar
- * DELETE => Deletar 
+ * Methods HTTP
+ * GET => Search
+ * POST => Save
+ * PUT => Alter
+ * DELETE => Delete 
  * PATCH => Alteração específica
  */
 
@@ -17,15 +16,16 @@ app.get("/", (req, res)=>{
     return res.json({messagem: 'Hello World - NLW'});
 });
 
-//1º parametro => Rota(Recurso API)
-//2º paramentro => request, response
+//1º params => router(API)
+//2º params => request, response
 app.post("/", (req, res)=>{
-    //imagine que já recebeu os dados para salvar
-    return res.json({messagem: 'Dados foram salvos com sucesso'})
+
+    //return datas to save (POSTMAN)
+    return res.json({messagem: 'Data has been save'})
 })
 
 app.put('/input', (req, res)=>{
-    return res.json({messagem: "Dados foram Alterados"})
+    return res.json({messagem: "Data changed"})
 })
 
-app.listen(8080, ()=> console.log('Servidor Rodando em TS'))
+app.listen(8080, ()=> console.log( 'Server is running (in TS)' ))
