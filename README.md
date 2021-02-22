@@ -16,8 +16,7 @@ yarn add ts-node-dev -D
     }
 ```
 ---
-or 
-*to **create/make** a clone:*
+or when *cloning:*
 ```<br>
   use "yarn" or "npm install"
 ```
