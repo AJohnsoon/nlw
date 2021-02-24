@@ -22,6 +22,9 @@ and execute:
 ```ts
   "yarn dev"
 ``` 
+
+
+
 ---
 `Database environment configuration`
   ```
@@ -34,12 +37,14 @@ and execute:
       yarn add @types/uuid -D
     ```
 *add in **package.json***
+
 ```json
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
   }
 ```
+
 *add or config **ormconfig.json*** `for ORM`
   ```json    
     {
