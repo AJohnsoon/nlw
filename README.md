@@ -39,10 +39,12 @@ and execute:
 *add in **package.json***
 
 ```json
-  "scripts": {
-    "dev": "ts-node-dev src/server.ts",
-    "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
-  }
+   "scripts": {
+      "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+      "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
+      "test": "cross-env NODE_ENV=test jest",
+      "posttest": "rm ./src/database/database.test.sqlite"
+  },
 ```
 
 *add or config **ormconfig.json*** `for ORM`
@@ -70,4 +72,14 @@ run all:
 reset last:
   `yarn typeorm migration:revert`
 ```
+---
 
+
+
+`for Test environment`
+```
+  yarn add jest @types/jest -D
+  yarn jest --init
+  yarn add ts-jest -D
+  yarn add supertest @types/supertest -D
+```
