@@ -83,3 +83,13 @@ reset last:
   yarn add ts-jest -D
   yarn add supertest @types/supertest -D
 ```
+
+
+```
+ yarn add nodemailer
+ yarn add @types/nodemailer -D
+```
+
+```
+yarn add handlebars
+```
