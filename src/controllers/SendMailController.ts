@@ -5,6 +5,7 @@ import { UsersRepository } from "../repositories/UsersRepository";
 import { SurveysRepository } from "../repositories/SurveysRepository";
 import { SurveysUsersRepository } from "../repositories/SurveysUsersRepository";
 import SendMailService from "../services/SendMailService";
+import AppError from "../errors/AppError";
 
 
 class SendEmailController {
@@ -18,9 +19,7 @@ class SendEmailController {
         const usersAlreadExists = await usersRepository.findOne({ email })
 
         if (!usersAlreadExists) {
-            return res.status(400).json({
-                error: "User not found or does not exists",
-            })
+            throw new AppError("User not found or does not exists") //error personalizado
         }
 
         const surveysAlreadExists = await surveysRepository.findOne({ id: survey_id })
