@@ -30,21 +30,24 @@ class SendEmailController {
                 error: "Survey not found or does not exists"
             })
         }
+        
+        const npsPath = resolve(__dirname, "..", "views", "emails", "npsMail.hbs")
+
+        const surveyUserAlreadExists = await surveysUsersRepository.findOne({
+            where: {user_id: usersAlreadExists.id, value: null},
+            relations: ["user", "survey"]
+        });
+
         const variables = {
             name: usersAlreadExists.name,
             title: surveysAlreadExists.title,
             description: surveysAlreadExists.description,
-            user_id: usersAlreadExists.id,
+            id: '',
             link: process.env.URL_MAIL
         }
-        const npsPath = resolve(__dirname, "..", "views", "emails", "npsMail.hbs")
-
-        const surveyUserAlreadExists = await surveysUsersRepository.findOne({
-            where: [{user_id: usersAlreadExists.id}, {value: null}],
-            relations: ["user", "survey"]
-        });
 
         if(surveyUserAlreadExists){
+            variables.id = surveyUserAlreadExists.id;
             await SendMailService.execute(email, surveysAlreadExists.title, variables, npsPath )
             return res.json(surveyUserAlreadExists)
         }
@@ -59,7 +62,7 @@ class SendEmailController {
         //enviar email para usuario
 
 
-
+        variables.id = surveyUser.id;
         await SendMailService.execute(email, surveysAlreadExists.title, variables, npsPath);
 
         return res.json(surveyUser)
